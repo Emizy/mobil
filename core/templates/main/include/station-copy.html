@@ -1,0 +1,96 @@
+{% load humanize %}
+{% load static %}
+<div class="card">
+    <div class="card-">
+        <div class="card-title">
+            <h4>STATION COPY</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        {% if station_quote %}
+            <div class="basic-list-group">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div><strong>Station
+                                name: </strong></div>
+                            <div>
+                                {{ station_quote.station.name }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div><strong>Invoice
+                                number: </strong></div>
+                            <div>
+                                {{ station_quote.invoice_number }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div><strong>Invoice
+                                date: </strong></div>
+                            <div>
+                                {{ station_quote.invoice_date }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div><strong>Due
+                                date: </strong></div>
+                            <div>
+                                {{ station_quote.due_date }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div><strong>Amount: </strong></div>
+                            <div>
+                                ₦{{ station_quote.amount|intcomma }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div><strong>Date created: </strong></div>
+                            <div>
+                                {{ station_quote.created_at|naturalday }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div><strong>Approval status: </strong></div>
+                            <div>
+                                {% if station_quote.status == 'PENDING' %}
+                                    <span class="badge badge-warning">PENDING</span>
+                                {% elif station_quote.status == 'DECLINED' %}
+                                    <span class="badge badge-danger">DECLINED</span>
+                                {% else %}
+                                    <span class="badge badge-success">APPROVED</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</div>
+<div class="row page-titles"
+     style="    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgb(82 63 105 / 5%);padding-left: 23px;">
+    <div class="col-md-12">
+        <div class="d-flex justify-content-between">
+            <div><strong>Uploaded document:</strong></div>
+            <div>
+                {% if station_quote.file %}
+                    <a href="{{ station_quote.file.url }}"
+                       class="badge badge-rounded badge-outline-primary">Download</a>
+                {% endif %} </div>
+        </div>
+    </div>
+</div>

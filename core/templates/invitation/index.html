@@ -1,0 +1,58 @@
+{% extends 'main/master.html' %}
+{% load static %}
+
+{% block title %} Invite - {{ type }} {% endblock %}
+
+{% block body %}
+    <div class="content-body">
+        <!-- row -->
+        <style>
+            .supplier-header {
+                font-size: large;
+                font-weight: 700;
+            }
+        </style>
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <div class="col-md-12">
+                    <div style="display: flex;justify-content: space-between">
+                        <div class=""><a href="javascript:void(0)" class="supplier-header">{% if type == 'supplier' %}
+                            Suppliers {% else %} Service station {% endif %} invitation</a></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form id="submit-form">
+                                    <div class="row">
+                                        <input type="hidden" name="type" id="type" value="{{ type }}">
+                                        <div class="col-md-6 mb-3">
+                                            <label>Name</label>
+                                            <input type="text" class="form-control input-default " id="name"
+                                                   placeholder="enter name">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label>Email</label>
+                                            <input type="email" class="form-control input-rounded" id="email"
+                                                   placeholder="enter email">
+                                        </div>
+                                        <div class="col-md-12 mb-3">
+                                            <button type="submit" class="btn btn-primary btn-sm" id="sub-btn">Send invite</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/custom/invite.js' %}"></script>
+{% endblock %}

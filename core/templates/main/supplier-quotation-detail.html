@@ -1,0 +1,69 @@
+{% extends 'main/master.html' %}
+{% load humanize %}
+{% load static %}
+{% block title %} Quotations information {% endblock %}
+{% block css %}
+    <link href="{% static 'vendor/datatables/css/jquery.dataTables.min.css' %}" rel="stylesheet">
+        <link href="{% static 'vendor/sweetalert2/dist/sweetalert2.min.css' %}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+
+    <style>
+        .supplier-header {
+            font-size: large;
+            font-weight: 600;
+        }
+
+        .card-title {
+            padding-top: 13px;
+            padding-left: 19px;
+            margin: auto;
+            display: table;
+        }
+    </style>
+    <div class="content-body">
+        <input type="hidden" id="identifier" value="{{ id }}"/>
+        <input type="hidden" id="invoice_number" value="{{ supplier_quote.invoice_number }}"/>
+        <!-- row -->
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <div class="col-md-12">
+                    <div style="display: flex;justify-content: space-between">
+                        <div class=""><a href="javascript:void(0)" class="supplier-header">Quotation
+                            information: <span>{{ supplier_quote.invoice_number }}</span></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row row-no-gutters" style="">
+                <div class="col-6" id="supplier-copy">
+
+                </div>
+                <div class="col-6" id="station-copy">
+
+                </div>
+            </div>
+            <div class="row page-titles"
+                 style="    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgb(82 63 105 / 5%);padding-left: 23px;margin-top: 90px !important;">
+                <div class="col-md-12">
+                    <div class="d-flex justify-content-between">
+                        <div><strong>Actions:</strong></div>
+                        <div class="d-flex">
+                            <button type="button" id="accept_quotation"
+                                    class="badge badge-rounded badge-success mr-5" style="margin-right: 10px">APPROVE</button>
+                            <button type="button" id="decline_quotation"
+                               class="badge badge-rounded badge-primary">DECLINED</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static 'vendor/datatables/js/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'vendor/sweetalert2/dist/sweetalert2.min.js' %}"></script>
+    <script src="{% static 'js/custom/quotations-preview.js' %}"></script>
+{% endblock %}

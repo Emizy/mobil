@@ -1,0 +1,118 @@
+{% extends 'auth/master.html' %}
+{% load static %}
+
+{% block title %} Accept invitation {% endblock %}
+{% block body %}
+    <style>
+        .authincation {
+            background-image: url("{% static 'images/fullbanner-bg.png' %}") !important;
+            background-repeat: no-repeat !important;
+            background-position: top right !important;
+            background-size: contain !important;
+        }
+    </style>
+    <div class="authincation h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                {% if status == 'success' %}
+                    <div class="col-md-12">
+                        <div class=" text-center mb-3">
+                            <a href="javascript:void(0)"><img src="{% static 'images/iiplc_logo.png' %}"
+                                                              style="height: 59px;
+    width: auto;" alt=""></a>
+                        </div>
+                        <div class="authincation-content">
+                            <div class="row no-gutters">
+                                <div class="col-xl-6">
+                                    <div class="auth-fom">
+                                        <h4 class="mb-4" style="padding-top: 38px;
+    padding-left: 38px;font-weight: bolder">11PLC Invitation request</h4>
+                                        <div class="container">
+
+                                            <p style="font-weight: 600;font-size: 15px">You have been invited to 11PC platform as {{ role }}, Kindly fill your
+                                                information correctly in order to complete your account registration</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6">
+                                    <div class="auth-form">
+                                        <form id="accept-form">
+                                            <input type="hidden" id="token" value="{{ token }}"/>
+                                            <input type="hidden" id="type" value="{{ type }}"/>
+                                            <div class="mb-3">
+                                                <label class="mb-1"><strong>Email</strong></label>
+                                                <input type="email" class="form-control" id="username"
+                                                       placeholder="hello@example.com" disabled readonly value="{{ email }}">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="mb-1"><strong>Address</strong></label>
+                                                <input type="text" class="form-control" id="address"
+                                                       placeholder="Your business address">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="mb-1"><strong>Password</strong></label>
+                                                <input type="password" class="form-control" placeholder="Password"
+                                                       id="password">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="mb-1"><strong>Confirm password</strong></label>
+                                                <input type="password" class="form-control" placeholder="Password"
+                                                       id="confirm_password">
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-primary btn-block" id="sub_btn">
+                                                    Accept
+                                                    invitation
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <div class="new-account mt-3">
+                                            <p>Already have an account? <a class="text-primary"
+                                                                           href="{% url 'login' %}">Sign in</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-md-6">
+
+                        <div class="authincation-content">
+                            <div class="row no-gutters">
+                                <div class="col-md-12">
+                                    <div class=" text-center mb-3">
+                                        <a href="javascript:void(0)"><img src="{% static 'images/iiplc_logo.png' %}"
+                                                                          style="height: 59px;
+    width: auto;" alt=""></a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="auth-fom">
+                                        <div class="container">
+                                            <div style="padding: 10px">
+                                                <div><img src="{% static 'images/access-denied.png' %}"
+                                                          style="display: table;margin: auto"/></div>
+                                                <p style="font-weight: 600;font-size: 15px">{{ message }}</p>
+                                                <div class="text-center">
+                                                    <a href="{% url 'login' %}" class="btn btn-primary btn-block"
+                                                       id="lab_btn">
+                                                        Sign in
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/custom/auth.js' %}"></script>
+{% endblock %}

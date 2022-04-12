@@ -1,0 +1,63 @@
+{% extends 'main/master.html' %}
+{% load static %}
+{% block title %} Quotations {% endblock %}
+{% block css %}
+    <link href="{% static 'vendor/datatables/css/jquery.dataTables.min.css' %}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+
+    <style>
+        .supplier-header {
+            font-size: large;
+            font-weight: 700;
+        }
+    </style>
+    <div class="content-body">
+        <!-- row -->
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <div class="col-md-12">
+                    <div style="display: flex;justify-content: space-between">
+                        <div class=""><a href="javascript:void(0)" class="supplier-header">Quotation</a></div>
+                        <div class="">
+                            <a href="{% url 'supplier-create-quotation' %}" class="btn btn-primary btn-sm">Add quote</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="supplier_quotation_tbl" class="display" style="min-width: 845px">
+                                    <thead>
+                                    <tr>
+                                        <th>Branch</th>
+                                        <th>Invoice number</th>
+                                        <th>Invoice date</th>
+                                        <th>Due date</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Created by</th>
+                                        <th>Create date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static 'vendor/datatables/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'js/custom/supplier-quotation.js' %}"></script>
+
+{% endblock %}

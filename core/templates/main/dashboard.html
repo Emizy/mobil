@@ -1,0 +1,140 @@
+{% extends 'main/master.html' %}
+{% load static %}
+{% block title %} Dashboard {% endblock %}
+{% block css %}
+    <link href="{% static 'vendor/datatables/css/jquery.dataTables.min.css' %}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <style>
+        .relative {
+            position: relative;
+        }
+
+        .icon-pos {
+            font-size: x-large;
+            position: absolute;
+            top: 16px;
+            right: 16px;
+        }
+    </style>
+    <div class="content-body">
+        <!-- row -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="row">
+                                <div class="col-xl-3 col-sm-6">
+                                    <div class="card booking">
+                                        <div class="card-body">
+                                            <div class="booking-status d-flex align-items-center">
+													<span class="relative">
+														<i class="fa fa-building icon-pos"></i>
+													</span>
+                                                <div class="ms-4">
+                                                    <h2 class="mb-0 font-w600">{{ station }}</h2>
+                                                    <p class="mb-0 text-nowrap">Total service station</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-sm-6">
+                                    <div class="card booking">
+                                        <div class="card-body">
+                                            <div class="booking-status d-flex align-items-center">
+													<span class="relative">
+														<svg id="icon-user2" xmlns="http://www.w3.org/2000/svg"
+                                                             class="text-primary" width="18"
+                                                             height="18" viewBox="0 0 24 24" fill="none"
+                                                             stroke="currentColor" stroke-width="2"
+                                                             stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+													</span>
+                                                <div class="ms-4">
+                                                    <h2 class="mb-0 font-w600">{{ supplier }}</h2>
+                                                    <p class="mb-0 text-nowrap ">Total supplier</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-sm-6">
+                                    <div class="card booking">
+                                        <div class="card-body">
+                                            <div class="booking-status d-flex align-items-center">
+													<span class="relative">
+														<i class="fa fa-briefcase icon-pos"></i>
+													</span>
+                                                <div class="ms-4">
+                                                    <h2 class="mb-0 font-w600">{{ pending }}</h2>
+                                                    <p class="mb-0">Pending quotations</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-sm-6">
+                                    <div class="card booking">
+                                        <div class="card-body">
+                                            <div class="booking-status d-flex align-items-center">
+													<span class="relative">
+                                                        <i class="fa fa-dollar-sign icon-pos"></i>
+													</span>
+                                                <div class="ms-4">
+                                                    <h2 class="mb-0 font-w600">{{ all_quotation }}</h2>
+                                                    <p class="mb-0">Total quotations</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-12">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="card">
+                                        <div class="card-header border-0 pb-0">
+                                            <h4 class="fs-20">Pending Quotations</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="supplier_quotation_tbl"
+                                                       class="display supplier_quotation_tbl"
+                                                       style="width: 100% !important;">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Supplier name</th>
+                                                        <th>Station name</th>
+                                                        <th>Invoice number</th>
+                                                        <th>Invoice date</th>
+                                                        <th>Due date</th>
+                                                        <th>Amount</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static 'vendor/datatables/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'js/custom/admin-dashboard.js' %}"></script>
+
+
+{% endblock %}

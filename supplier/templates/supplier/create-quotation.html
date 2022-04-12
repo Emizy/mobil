@@ -1,0 +1,167 @@
+{% extends 'supplier/master.html' %}
+{% load static %}
+{% block title %} CREATE QUOTATION {% endblock %}
+{% block css %}
+    <!-- Daterange picker -->
+    <link href="{% static 'vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css' %}"
+          rel="stylesheet">
+    <link href="{% static 'vendor/sweetalert2/dist/sweetalert2.min.css' %}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+
+    <style>
+        .supplier-header {
+            font-size: large;
+            font-weight: 700;
+        }
+
+        .datepicker {
+            z-index: 2051 !important;
+        }
+
+        /* fallback */
+        .left {
+            color: white;
+        }
+
+        .right {
+            color: white;
+        }
+
+        .material-icons {
+            color: white;
+        }
+
+        @font-face {
+            font-family: 'Material Icons';
+            font-style: normal;
+            font-weight: 400;
+            src: url('{% static 'font/Material-Design-Icons.woff2' %}') format('woff2');
+        }
+
+        .material-icons {
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .dtp > .dtp-content > .dtp-date-view > header.dtp-header {
+            background: var(--primary);
+            color: #fff;
+            text-align: center;
+            padding: 0.3em;
+        }
+
+        .dtp div.dtp-date, .dtp div.dtp-time {
+            background: var(--primary);
+            text-align: center;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .dtp table.dtp-picker-days tr > td > a.selected {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .symbol {
+            position: absolute;
+            top: 34px;
+            left: 29px;
+            font-size: 20px;
+        }
+    </style>
+    <div class="content-body">
+        <!-- row -->
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <div class="col-md-12">
+                    <div style="display: flex;justify-content: space-between">
+                        <div class=""><a href="javascript:void(0)" class="supplier-header">Create Quotation</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="basic-form">
+                                <form id="supplier-quotation" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label" for="branch">Select region</label>
+                                            <select id="branch" name="branch" class="default-select form-control wide"
+                                                    required>
+                                                {% for branch in branches %}
+                                                    <option value="{{ branch.id }}">{{ branch.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label">Invoice number</label>
+                                            <input type="text" class="form-control" name="invoice_number"
+                                                   placeholder="23413D312" required>
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label">Invoice date</label>
+                                            {#                                            <input type="date" class="form-control" placeholder="Invoice date" id="invoice_date">#}
+                                            <input type="text" class="form-control"
+                                                   id="invoice_date" name="invoice_date" required>
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label">Due date</label>
+                                            <input type="text" class="form-control" id="due_date" name="due_date"
+                                                   readonly>
+                                        </div>
+                                        <div class="mb-3 col-md-6" style="position:relative;">
+                                            <label class="form-label">Amount</label>
+                                            {#                                            <input type="date" class="form-control" placeholder="Invoice date" id="invoice_date">#}
+                                            <input type="number" class="form-control"
+                                                   id="amount" name="amount" min="1" required
+                                                   style="padding-left: 38px">
+                                            <span class="symbol">₦</span>
+                                        </div>
+                                        <div class="mb-3 col-md-6">
+                                            <label class="form-label">Upload receipt</label>
+                                            <div class="input-group">
+
+                                                <div class="form-file">
+                                                    <input type="file" accept="image/*,.pdf" name="file" required
+                                                           class="form-file-input form-control" style="    padding-top: 15px;
+    padding-bottom: 12px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" id="sub-btn" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <!-- momment js is must -->
+    <script src="{% static 'vendor/moment/moment.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap-daterangepicker/daterangepicker.js' %}"></script>
+    <!-- Material color picker -->
+    <script src="{% static 'vendor/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js' %}"></script>
+    <script src="{% static 'js/plugins-init/material-date-picker-init.js' %}"></script>
+    <script src="{% static 'vendor/sweetalert2/dist/sweetalert2.min.js' %}"></script>
+    <script src="{% static 'js/custom/quotation.js' %}"></script>
+{% endblock %}

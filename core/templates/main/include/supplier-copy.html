@@ -1,0 +1,95 @@
+{% load humanize %}
+{% load static %}
+<div class="card">
+    <div class="card-heder">
+        <div class="card-title">
+            <h4>SUPPLIER COPY</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        {% if supplier_quote %}
+            <div class="basic-list-group">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div><strong>Supplier
+                                name: </strong></div>
+                            <div>
+                                {{ supplier_quote.branch.supplier.name }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div><strong>Invoice
+                                number: </strong></div>
+                            <div>
+                                {{ supplier_quote.invoice_number }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div><strong>Invoice
+                                date: </strong></div>
+                            <div>
+                                {{ supplier_quote.invoice_date }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div><strong>Due
+                                date: </strong></div>
+                            <div>
+                                {{ supplier_quote.due_date }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div><strong>Amount: </strong></div>
+                            <div>
+                                ₦{{ supplier_quote.amount|intcomma }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div><strong>Date created: </strong></div>
+                            <div>
+                                {{ supplier_quote.created_at|naturalday }}
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between">
+                            <div><strong>Approval status: </strong></div>
+                            <div>
+                                {% if supplier_quote.status == 'PENDING' %}
+                                    <span class="badge badge-warning">PENDING</span>
+                                {% elif supplier_quote.status == 'DECLINED' %}
+                                    <span class="badge badge-danger">DECLINED</span>
+                                {% else %}
+                                    <span class="badge badge-success">APPROVED</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        {% endif %}
+
+    </div>
+
+</div>
+<div class="row page-titles"
+     style="    box-shadow: 0rem 0.3125rem 0.3125rem 0rem rgb(82 63 105 / 5%);padding-left: 23px;">
+    <div class="col-md-12">
+        <div class="d-flex justify-content-between">
+            <div><strong>Uploaded document:</strong></div>
+            <div><a href="{{ supplier_quote.file.url }}"
+                    class="badge badge-rounded badge-outline-primary">Download</a></div>
+        </div>
+    </div>
+</div>

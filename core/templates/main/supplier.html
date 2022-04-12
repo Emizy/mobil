@@ -1,0 +1,87 @@
+{% extends 'main/master.html' %}
+{% load static %}
+{% block title %} Suppliers {% endblock %}
+{% block css %}
+    <link href="{% static 'vendor/datatables/css/jquery.dataTables.min.css' %}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+    <style>
+        .supplier-header {
+            font-size: large;
+            font-weight: 700;
+        }
+    </style>
+    <div class="content-body">
+        <!-- row -->
+        <div class="container-fluid">
+            <div class="row page-titles">
+                <div class="col-md-12">
+                    <div style="display: flex;justify-content: space-between">
+                        <div class=""><a href="javascript:void(0)" class="supplier-header">Suppliers</a></div>
+                        <div class="">
+                            <a href="{% url 'invitation' 'supplier' %}" class="btn btn-primary btn-sm">Invite
+                                supplier</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="example3" class="display" style="min-width: 845px">
+                                    <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Mobile</th>
+                                        <th>Status</th>
+                                        <th>Joining Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for supplier in suppliers %}
+                                        <tr>
+                                            <td><img class="rounded-circle" width="35"
+                                                     src="images/profile/small/pic1.jpg"
+                                                     alt=""></td>
+                                            <td>{{ supplier.name }}</td>
+                                            <td>{{ supplier.email }}</td>
+                                            <td>{{ supplier.mobile }}</td>
+                                            <td>
+                                                {% if supplier.is_accepted is False %}
+                                                    <span class="badge light badge-warning">Pending</span>
+                                                {% else %}
+                                                    <span class="badge light badge-success">Accepted</span>
+                                                {% endif %}
+                                            </td>
+                                            <td><a href="javascript:void(0);"><strong>{{ supplier.created_at }}</strong></a>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i
+                                                            class="fas fa-pencil-alt"></i></a>
+                                                    <a href="#" class="btn btn-danger shadow btn-xs sharp"><i
+                                                            class="fa fa-trash"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+    <script src="{% static 'vendor/datatables/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'js/plugins-init/datatables.init.js' %}"></script>
+{% endblock %}

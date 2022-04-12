@@ -1,0 +1,41 @@
+{% load static %}
+<!--**********************************
+        Sidebar start
+    ***********************************-->
+<div class="dlabnav">
+    <div class="dlabnav-scroll">
+        <ul class="metismenu" id="menu">
+            <li><a class=" " href="{% url 'admin' %}" aria-expanded="false">
+                <i class="flaticon-025-dashboard"></i>
+                <span class="nav-text">Dashboard</span></a>
+
+            </li>
+            <li>
+                <a href="{% url 'stations' %}" aria-expanded="false">
+                    <i class="flaticon-050-info"></i>
+                    <span class="nav-text">Service station</span>
+                </a>
+            </li>
+            <li><a href="{% url 'suppliers' %}" aria-expanded="false">
+                <i class="flaticon-041-graph"></i>
+                <span class="nav-text">Supplier</span>
+            </a>
+            <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+                <i class="flaticon-025-dashboard"></i>
+                <span class="nav-text">Quotations</span>
+            </a>
+                <ul aria-expanded="false">
+                    <li><a href="{% url 'main-quotations' 'supplier' %}">All quotations</a></li>
+                </ul>
+
+            </li>
+        </ul>
+        <div class="copyright mt-10" style="margin-top: 50px">
+            <p class="text-center"><strong>11PLC</strong> © 2022 All Rights Reserved</p>
+            <p class="fs-12 text-center">Made with <span class="heart"></span> by Hardweb solutions</p>
+        </div>
+    </div>
+</div>
+<!--**********************************
+    Sidebar end
+***********************************-->
